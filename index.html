@@ -3,7 +3,6 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
   <meta name="theme-color" content="#fff0f5">
   <meta name="description" content="A special birthday garden made for Sayang.">
 
@@ -11,74 +10,46 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600&family=Playfair+Display:ital,wght@0,600;1,500&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
 
-  <!-- FALLING FLOWER PETALS -->
   <div id="petals"></div>
 
-  <!-- BACKGROUND MUSIC -->
+  <!-- Rename file musik kamu menjadi music.mp3 -->
   <audio id="music" loop preload="none">
-    <source src="music/music_Lauv - All 4 Nothing (Lyrics)(I'm So In Love)-[AudioTrimmer.com].mp3" type="audio/mpeg">
+    <source src="music/music.mp3" type="audio/mpeg">
   </audio>
 
-  <!-- MUSIC BUTTON -->
-  <button
-    class="music-button"
-    id="musicBtn"
-    onclick="toggleMusic()"
-    aria-label="Play or pause music"
-  >
-    ♫
-  </button>
+  <button class="music-button" id="musicBtn" onclick="toggleMusic()" aria-label="Play or pause music">♫</button>
 
-
-  <!-- ==================================
-       HERO SECTION
-  =================================== -->
-
+  <!-- HERO -->
   <section class="hero" id="home">
-
     <div class="hero-decoration">✧</div>
-
     <div class="eyebrow">A SPECIAL DAY FOR YOU</div>
-
     <div class="hero-flower">🌷</div>
 
-    <h1>
-      Happy Birthday,<br>
-      <span>Sayang ♡</span>
-    </h1>
+    <h1>Happy Birthday,<br><span>Sayang ♡</span></h1>
 
     <p class="hero-text">
       Today, the world became a little more beautiful
       because you were born.
-
       I made this little garden just for you.
       May your life bloom as beautifully as these flowers.
     </p>
 
-    <button class="btn" onclick="goTo('garden')">
-      Enter Your Garden ♡
-    </button>
+    <button class="btn" onclick="goTo('garden')">Enter Your Garden ♡</button>
 
     <div class="scroll-indicator">
       SCROLL TO EXPLORE
       <span>↓</span>
     </div>
-
   </section>
 
-
-  <!-- ==================================
-       NAVIGATION
-  =================================== -->
-
+  <!-- NAV -->
   <nav>
     <a href="#home">Home</a>
     <a href="#garden">Garden</a>
@@ -87,142 +58,77 @@
     <a href="#surprise">Love</a>
   </nav>
 
-
-  <!-- ==================================
-       FLOWER GARDEN
-  =================================== -->
-
- <section class="garden" id="garden">
-
-  <div class="container">
-
-    <div class="eyebrow">A GARDEN FOR YOU</div>
-
-    <h2 class="heading">
-      A Thousand Roses For You ♡
-    </h2>
-
-    <p class="desc">
-      If I could give you a garden,
-      I would fill it with a thousand roses.
-      Each one represents how special you are to me.
-    </p>
-
-    <div class="flower-stage">
-
-      <canvas id="flowerCanvas"></canvas>
-
-      <div class="flower-caption">
-        Every rose blooms for you, Sayang ♡
-      </div>
-
-    </div>
-
-    <p class="garden-message" id="gardenMessage">
-      Watch your roses bloom, Sayang ♡
-    </p>
-
-    <button class="btn" onclick="restartFlower()">
-      Bloom Again ✨
-    </button>
-
-  </div>
-
-</section>
-
-
-  <!-- ==================================
-       MEMORIES GALLERY
-  =================================== -->
-
-  <section class="gallery" id="gallery">
-
+  <!-- GARDEN -->
+  <section class="garden" id="garden">
     <div class="container">
-
-      <div class="eyebrow">THIS IS</div>
-
-      <h2 class="heading">
-        My Beautiful Girl ♡
-      </h2>
-
+      <div class="eyebrow">A GARDEN FOR YOU</div>
+      <h2 class="heading">A Thousand Roses For You ♡</h2>
       <p class="desc">
-        You always look beautiful in every picture you take 💖
+        If I could give you a garden,
+        I would fill it with a thousand roses.
+        Each one represents how special you are to me.
       </p>
 
-      <div class="gallery-grid">
-
-        <div class="photo">
-          <img src="images/gambar 1.jpeg" loading="lazy">
-          <p>Cantikku ♡</p>
-        </div>
-
-        <div class="photo">
-          <img src="images/gambar 2.jpeg" loading="lazy">
-          <p>Sweetie Pie🌷</p>
-        </div>
-
-        <div class="photo">
-          <img src="images/gambar 3.jpeg" loading="lazy">
-          <p>My love</p>
-        </div>
-
-        <div class="photo">
-          <img src="images/gambar 4.jpeg" loading="lazy">
-          <p>Lovely 💗</p>
-        </div>
-
+      <div class="flower-stage">
+        <canvas id="flowerCanvas"></canvas>
+        <div class="flower-caption">Every rose blooms for you, Sayang ♡</div>
       </div>
 
-      <p class="gallery-note">
-        I LOVE YOU.
-      </p>
+      <p class="garden-message" id="gardenMessage">Watch your roses bloom, Sayang ♡</p>
 
+      <button class="btn" onclick="restartFlower()">Bloom Again ✨</button>
     </div>
-
   </section>
 
-
-  <!-- ==================================
-       LOVE LETTER
-  =================================== -->
-
-  <section class="letter-section" id="letter">
-
+  <!-- GALLERY (rename foto jadi gambar1.jpg dst, lebar maks 800px) -->
+  <section class="gallery" id="gallery">
     <div class="container">
+      <div class="eyebrow">THIS IS</div>
+      <h2 class="heading">My Beautiful Girl ♡</h2>
+      <p class="desc">You always look beautiful in every picture you take 💖</p>
 
+      <div class="gallery-grid">
+        <div class="photo">
+          <img src="images/gambar1.jpg" width="400" height="400" loading="lazy" decoding="async" alt="Cantikku">
+          <p>Cantikku ♡</p>
+        </div>
+        <div class="photo">
+          <img src="images/gambar2.jpg" width="400" height="400" loading="lazy" decoding="async" alt="Sweetie Pie">
+          <p>Sweetie Pie🌷</p>
+        </div>
+        <div class="photo">
+          <img src="images/gambar3.jpg" width="400" height="400" loading="lazy" decoding="async" alt="My love">
+          <p>My love</p>
+        </div>
+        <div class="photo">
+          <img src="images/gambar4.jpg" width="400" height="400" loading="lazy" decoding="async" alt="Lovely">
+          <p>Lovely 💗</p>
+        </div>
+      </div>
+
+      <p class="gallery-note">I LOVE YOU.</p>
+    </div>
+  </section>
+
+  <!-- LETTER -->
+  <section class="letter-section" id="letter">
+    <div class="container">
       <div class="eyebrow">A LETTER FROM MY HEART</div>
-
-      <h2 class="heading">
-        A Little Letter for You 💌
-      </h2>
-
+      <h2 class="heading">A Little Letter for You 💌</h2>
       <p class="desc">
         There is something I want you to read.
         Click the envelope to open it.
       </p>
 
-      <div
-        class="envelope"
-        id="envelope"
-        onclick="openLetter()"
-        role="button"
-        tabindex="0"
-        aria-label="Open birthday letter"
-        onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openLetter()}"
-      >
-
-        <span class="envelope-label">
-          For Sayang
-        </span>
-
+      <div class="envelope" id="envelope" onclick="openLetter()" role="button" tabindex="0"
+           aria-label="Open birthday letter"
+           onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openLetter()}">
+        <span class="envelope-label">For Sayang</span>
       </div>
 
-      <p class="letter-hint">
-        Tap the envelope ♡
-      </p>
+      <p class="letter-hint">Tap the envelope ♡</p>
 
       <div class="letter-content" id="letterContent">
-
         <h3>Dear Sayang, ♡</h3>
 
         <p>
@@ -230,196 +136,127 @@
           yang sangat spesial karena seseorang yang
           begitu berharga telah dilahirkan ke dunia.
         </p>
-
         <p>
           Semoga di usia barumu ini kamu selalu diberikan
           kesehatan, kebahagiaan, ketenangan, dan banyak
           alasan untuk tersenyum.
         </p>
-
         <p>
           Terima kasih sudah hadir dan menjadi bagian
           dari cerita indah ini. Semoga semua hal yang
           sedang kamu perjuangkan menemukan hasil terbaik.
         </p>
-
         <p>
           If I could give you one thing in life,
           I would give you the ability to see yourself
           through my eyes, so you could understand
           how special you are.
         </p>
-
         <p>
           Happy birthday, Sayang. May your days bloom
           as beautifully as the flowers in this garden.
         </p>
-
         <p>
           Jangan pernah berhenti bermimpi, jangan takut
           mencoba hal baru, dan selalu ingat bahwa kamu
           pantas mendapatkan banyak kebahagiaan.
         </p>
 
-        <p class="signature">
-          With love, always. ♡
-        </p>
-
+        <p class="signature">With love, always. ♡</p>
       </div>
-
     </div>
-
   </section>
 
+  <!-- SURPRISE -->
+  <section class="surprise" id="surprise">
+    <div class="container">
+      <div class="eyebrow">A LITTLE SURPRISE FOR YOU</div>
+      <h2 class="heading">A Surprise Just for You 🎁</h2>
+      <p class="desc">
+        Masih ada satu hadiah kecil yang belum kamu buka.
+        Are you ready?
+      </p>
 
-<!-- SECRET SURPRISE -->
-<section class="surprise" id="surprise">
+      <div class="gift-box" id="gift" onclick="openGift()" role="button" tabindex="0"
+           aria-label="Open your gift"
+           onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openGift()}">🎁</div>
 
-  <div class="container">
+      <button class="btn" onclick="openGift()">Open Your Gift ♡</button>
 
-    <div class="eyebrow">A LITTLE SURPRISE FOR YOU</div>
+      <div class="surprise-message" id="surpriseMessage">
 
-    <h2 class="heading">
-      A Surprise Just for You 🎁
-    </h2>
+        <div class="rose-container" id="roseContainer">
+          <div class="rose-scene">
+            <div class="rose-glow"></div>
 
-    <p class="desc">
-      Masih ada satu hadiah kecil yang belum kamu buka.
-      Are you ready?
-    </p>
+            <div class="rose">
+              <div class="rose-head">
+                <span class="rose-petal petal-1"></span>
+                <span class="rose-petal petal-2"></span>
+                <span class="rose-petal petal-3"></span>
+                <span class="rose-petal petal-4"></span>
+                <span class="rose-petal petal-5"></span>
+                <span class="rose-petal petal-6"></span>
+                <span class="rose-petal petal-7"></span>
+                <span class="rose-petal petal-8"></span>
+                <span class="rose-center"></span>
+              </div>
 
-    <!-- GIFT BUTTON -->
-    <div
-      class="gift-box"
-      id="gift"
-      onclick="openGift()"
-      role="button"
-      tabindex="0"
-      aria-label="Open your gift"
-      onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openGift()}"
-    >
-      🎁
-    </div>
-
-    <button class="btn" onclick="openGift()">
-      Open Your Gift ♡
-    </button>
-
-    <!-- SURPRISE MESSAGE -->
-    <div class="surprise-message" id="surpriseMessage">
-
-      <div class="rose-container" id="roseContainer">
-
-        <div class="rose-scene">
-
-          <div class="rose-glow"></div>
-
-          <div class="rose">
-
-            <div class="rose-head">
-              <span class="rose-petal petal-1"></span>
-              <span class="rose-petal petal-2"></span>
-              <span class="rose-petal petal-3"></span>
-              <span class="rose-petal petal-4"></span>
-              <span class="rose-petal petal-5"></span>
-              <span class="rose-petal petal-6"></span>
-              <span class="rose-petal petal-7"></span>
-              <span class="rose-petal petal-8"></span>
-              <span class="rose-center"></span>
+              <div class="rose-stem"></div>
+              <div class="rose-leaf leaf-left"></div>
+              <div class="rose-leaf leaf-right"></div>
             </div>
 
-            <div class="rose-stem"></div>
-
-            <div class="rose-leaf leaf-left"></div>
-            <div class="rose-leaf leaf-right"></div>
-
+            <div class="rose-ground"></div>
           </div>
 
-          <div class="rose-ground"></div>
-
+          <p class="rose-caption">A rose that blooms only for you ♡</p>
         </div>
 
-        <p class="rose-caption">
-          A rose that blooms only for you ♡
+        <h3>You Are My Favorite Flower ♡</h3>
+
+        <p>
+          Kalau dunia ini adalah taman, maka kamu adalah
+          salah satu bunga paling indah di dalamnya.
         </p>
-
+        <p>
+          Teruslah bermekaran, Sayang. Semoga setiap
+          langkahmu dipenuhi kebahagiaan, keberanian,
+          dan hal-hal indah yang tidak pernah kamu
+          bayangkan sebelumnya.
+        </p>
+        <p>
+          This little garden will always remind you
+          that you deserve beautiful things. ♡
+        </p>
       </div>
-
-      <h3>You Are My Favorite Flower ♡</h3>
-
-      <p>
-        Kalau dunia ini adalah taman, maka kamu adalah
-        salah satu bunga paling indah di dalamnya.
-      </p>
-
-      <p>
-        Teruslah bermekaran, Sayang. Semoga setiap
-        langkahmu dipenuhi kebahagiaan, keberanian,
-        dan hal-hal indah yang tidak pernah kamu
-        bayangkan sebelumnya.
-      </p>
-
-      <p>
-        This little garden will always remind you
-        that you deserve beautiful things. ♡
-      </p>
-
     </div>
+  </section>
 
-  </div>
-
-</section>
-
-  <!-- ==================================
-       FINAL SECTION
-  =================================== -->
-
+  <!-- FINAL -->
   <section class="final">
-
     <div class="container">
-
       <div class="final-heart">💗</div>
-
-      <div class="eyebrow">
-        MADE ESPECIALLY FOR YOU
-      </div>
-
-      <h2 class="heading">
-        Happy Birthday, Sayang!
-      </h2>
-
+      <div class="eyebrow">MADE ESPECIALLY FOR YOU</div>
+      <h2 class="heading">Happy Birthday, Sayang!</h2>
       <p class="desc">
         Keep blooming, keep smiling,
         and keep being yourself.
-
         May your new chapter be filled
         with beautiful things.
       </p>
 
-      <button class="btn" onclick="flowerRain()">
-        Send More Love 💕
-      </button>
+      <button class="btn" onclick="flowerRain()">Send More Love 💕</button>
 
-      <p class="final-note">
-        Until all the flowers bloom again. 🌸
-      </p>
-
+      <p class="final-note">Until all the flowers bloom again. 🌸</p>
     </div>
-
   </section>
-
-
-  <!-- FOOTER -->
 
   <footer>
     <p>Made with ♡ especially for Sayang</p>
     <p class="footer-small">A little garden of happiness.</p>
   </footer>
 
-
-  <!-- JAVASCRIPT -->
-
   <script src="js/script.js"></script>
-
 </body>
 </html>
