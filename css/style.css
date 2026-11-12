@@ -636,3 +636,214 @@ nav a:hover {
     scroll-behavior: auto !important;
   }
 }
+
+/* =========================================
+   TAMBAHAN: tempel di PALING BAWAH style.css
+   (mawar CSS ringan, tanpa filter/blur)
+========================================= */
+
+.surprise {
+  background: linear-gradient(160deg, #fff4f7, #ffe6ee);
+}
+
+#gift {
+  display: block;
+  width: max-content;
+  margin: 30px auto 20px;
+}
+
+/* ---------- MAWAR RINGAN ---------- */
+
+.rose {
+  position: relative;
+  width: 180px;
+  height: 300px;
+  margin-bottom: 14px;
+  transform-origin: 50% 100%;
+  animation: roseSway 4s ease-in-out infinite;
+}
+
+@keyframes roseSway {
+  0%, 100% { transform: rotate(-2deg); }
+  50% { transform: rotate(2deg); }
+}
+
+.rose-head {
+  position: absolute;
+  z-index: 3;
+  top: 10px;
+  left: calc(50% - 60px);
+  width: 120px;
+  height: 120px;
+  transform: scale(.2);
+}
+
+.rose-container.show .rose-head {
+  animation: roseBloom 1.8s .4s cubic-bezier(.2, .9, .3, 1.2) forwards;
+}
+
+@keyframes roseBloom {
+  to { transform: scale(1); }
+}
+
+.rose-petal {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 56px;
+  height: 76px;
+  margin-left: -28px;
+  margin-top: -76px;
+  transform-origin: 50% 100%;
+  border-radius: 50% 50% 45% 45% / 70% 70% 30% 30%;
+  background: linear-gradient(180deg, #ffb3d6, #f0509f 60%, #b8236b);
+  border: 1px solid rgba(255, 200, 230, .6);
+}
+
+.petal-1 { transform: rotate(0deg); }
+.petal-2 { transform: rotate(45deg); }
+.petal-3 { transform: rotate(90deg); }
+.petal-4 { transform: rotate(135deg); }
+.petal-5 { transform: rotate(180deg); }
+.petal-6 { transform: rotate(225deg); }
+.petal-7 { transform: rotate(270deg); }
+.petal-8 { transform: rotate(315deg); }
+
+/* kelopak dalam: lebih kecil dan lebih gelap */
+.petal-5,
+.petal-6,
+.petal-7,
+.petal-8 {
+  background: linear-gradient(180deg, #ff9ccb, #d9317f 60%, #8f1750);
+}
+.petal-5 { transform: rotate(22deg) scale(.7); }
+.petal-6 { transform: rotate(112deg) scale(.7); }
+.petal-7 { transform: rotate(202deg) scale(.7); }
+.petal-8 { transform: rotate(292deg) scale(.7); }
+
+.rose-center {
+  position: absolute;
+  left: calc(50% - 14px);
+  top: calc(50% - 14px);
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #fff, #ffc5e8 55%, #e0408f);
+}
+
+.rose-stem {
+  position: absolute;
+  z-index: 1;
+  left: calc(50% - 3px);
+  top: 70px;
+  bottom: 0;
+  width: 6px;
+  border-radius: 4px;
+  background: linear-gradient(180deg, #5fe3a1, #1f9e63);
+}
+
+.rose-leaf {
+  position: absolute;
+  z-index: 2;
+  top: 190px;
+  width: 56px;
+  height: 28px;
+  background: linear-gradient(135deg, #7df0b0, #1f9e63);
+}
+
+.leaf-left {
+  right: calc(50% + 3px);
+  border-radius: 100% 0 100% 0;
+  transform: rotate(-20deg);
+}
+
+.leaf-right {
+  left: calc(50% + 3px);
+  border-radius: 0 100% 0 100%;
+  transform: rotate(20deg);
+}
+
+.rose-ground {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 220px;
+  height: 26px;
+  margin-left: -110px;
+  border-radius: 50%;
+  background: radial-gradient(ellipse, rgba(72, 220, 145, .35), rgba(72, 220, 145, 0) 70%);
+}
+
+.rose-caption {
+  margin-top: 6px;
+  color: #bf668a;
+  font-family: 'Playfair Display', serif;
+  font-size: 14px;
+  font-style: italic;
+}
+
+/* ---------- FINAL SECTION & FOOTER ---------- */
+
+.final {
+  background: linear-gradient(160deg, #ffeaf1, #ffd9e6);
+}
+
+.final-heart {
+  margin-bottom: 14px;
+  font-size: 60px;
+  animation: floating 3s ease-in-out infinite;
+}
+
+.final-note {
+  margin-top: 26px;
+  color: #bd829a;
+  font-family: 'Playfair Display', serif;
+  font-size: 13px;
+  font-style: italic;
+}
+
+footer {
+  padding: 30px 20px 40px;
+  background: #f9dce7;
+  color: #a65f7b;
+  font-size: 13px;
+  text-align: center;
+}
+
+.footer-small {
+  margin-top: 6px;
+  color: #bd829a;
+  font-size: 11px;
+}
+
+
+/* =========================================
+   MODE RINGAN (otomatis di HP lemah)
+========================================= */
+
+.gallery, .letter-section {
+  content-visibility: auto;
+  contain-intrinsic-size: 1px 800px;
+}
+
+body.lite *,
+body.lite *::before,
+body.lite *::after {
+  filter: none !important;
+  backdrop-filter: none !important;
+  text-shadow: none !important;
+}
+body.lite .hero-decoration,
+body.lite .hero-flower,
+body.lite #gift,
+body.lite .final-heart,
+body.lite .scroll-indicator span {
+  animation: none !important;
+}
+body.lite .photo,
+body.lite .btn {
+  box-shadow: 0 3px 8px rgba(0, 0, 0, .12) !important;
+}
+body.lite #petals {
+  display: none;
+}
