@@ -31,6 +31,7 @@ body {
   color: var(--text);
   font-family: 'DM Sans', sans-serif;
   overflow-x: hidden;
+  -webkit-tap-highlight-color: transparent;
 }
 
 button {
@@ -86,7 +87,7 @@ section {
   font-size: 13px;
   font-weight: 600;
   box-shadow: 0 7px 20px #e9b0c5;
-  transition: .3s ease;
+  transition: transform .3s ease, box-shadow .3s ease;
 }
 
 .btn:hover {
@@ -98,8 +99,7 @@ section {
   transform: scale(.96);
 }
 
-
-/* 2. FALLING PETALS */
+/* 2. FALLING PETALS & HEARTS */
 
 #petals {
   position: fixed;
@@ -112,26 +112,46 @@ section {
 .petal {
   position: absolute;
   top: -35px;
-  animation: falling linear forwards;
   opacity: .85;
+  will-change: transform, opacity;
+  animation: falling linear forwards;
 }
 
 @keyframes falling {
   0% {
-    transform: translateY(-30px) rotate(0);
+    transform: translate3d(0, -30px, 0) rotate(0);
     opacity: 0;
   }
-
   10% {
     opacity: .9;
   }
-
   100% {
-    transform: translateY(110vh) rotate(650deg);
+    transform: translate3d(0, 110vh, 0) rotate(650deg);
     opacity: 0;
   }
 }
 
+.heart {
+  position: fixed;
+  z-index: 50;
+  pointer-events: none;
+  will-change: transform, opacity;
+  animation: heartFloat 2s ease-out forwards;
+}
+
+@keyframes heartFloat {
+  0% {
+    transform: translate3d(0, 0, 0) scale(.5);
+    opacity: 0;
+  }
+  15% {
+    opacity: 1;
+  }
+  100% {
+    transform: translate3d(0, -40vh, 0) scale(1.15);
+    opacity: 0;
+  }
+}
 
 /* 3. HERO SECTION */
 
@@ -143,19 +163,9 @@ section {
   align-items: center;
   justify-content: center;
   overflow: hidden;
-
   background:
-    radial-gradient(
-      ellipse at 50% 80%,
-      #f8d6e2,
-      transparent 55%
-    ),
-    linear-gradient(
-      160deg,
-      #fff7fa,
-      #ffe2ec,
-      #fceaf1
-    );
+    radial-gradient(ellipse at 50% 80%, #f8d6e2, transparent 55%),
+    linear-gradient(160deg, #fff7fa, #ffe2ec, #fceaf1);
 }
 
 .hero-decoration {
@@ -164,13 +174,16 @@ section {
   right: 13%;
   color: #e6a2bd;
   font-size: 45px;
+  will-change: transform;
   animation: floating 4s ease-in-out infinite;
 }
 
 .hero-flower {
   margin-bottom: 20px;
   font-size: 85px;
-  filter: drop-shadow(0 0 18px #ed9dc8);
+  /* drop-shadow berat di HP, diganti text-shadow ringan */
+  text-shadow: 0 0 18px #ed9dc8;
+  will-change: transform;
   animation: floating 3s ease-in-out infinite;
 }
 
@@ -212,11 +225,10 @@ section {
 
 @keyframes floating {
   0%, 100% {
-    transform: translateY(0);
+    transform: translate3d(0, 0, 0);
   }
-
   50% {
-    transform: translateY(-17px) rotate(8deg);
+    transform: translate3d(0, -17px, 0) rotate(8deg);
   }
 }
 
@@ -226,24 +238,27 @@ section {
   }
 }
 
-
 /* 4. NAVIGATION */
 
 nav {
   position: sticky;
   top: 0;
   z-index: 30;
-
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
   gap: 20px;
-
   padding: 15px 8px;
-
-  background: rgba(255, 250, 252, .94);
-  backdrop-filter: blur(12px);
+  /* background solid supaya tidak lag (tanpa backdrop-filter di HP) */
+  background: rgba(255, 250, 252, .97);
   border-bottom: 1px solid #f7dce7;
+}
+
+@media (min-width: 900px) {
+  nav {
+    background: rgba(255, 250, 252, .9);
+    backdrop-filter: blur(12px);
+  }
 }
 
 nav a {
@@ -251,29 +266,19 @@ nav a {
   font-size: 11px;
   font-weight: 600;
   text-decoration: none;
-  transition: .3s;
+  transition: color .3s;
 }
 
 nav a:hover {
   color: #e88eae;
 }
 
-
-/* =========================================
-   5. GLOWING ROSE GARDEN
-========================================= */
+/* 5. GLOWING ROSE GARDEN */
 
 .garden {
   overflow: hidden;
   color: white;
-
-  background:
-    radial-gradient(
-      ellipse at 50% 85%,
-      #243c34 0%,
-      #151d22 45%,
-      #090b12 100%
-    );
+  background: radial-gradient(ellipse at 50% 85%, #243c34 0%, #151d22 45%, #090b12 100%);
 }
 
 .garden .heading {
@@ -295,32 +300,22 @@ nav a:hover {
   max-width: 750px;
   height: 510px;
   margin: 35px auto;
-
   overflow: hidden;
   border: 1px solid rgba(255, 182, 230, .25);
   border-radius: 22px;
-
   background:
-    radial-gradient(
-      ellipse at 50% 85%,
-      rgba(48, 255, 145, .12),
-      transparent 50%
-    ),
-    radial-gradient(
-      ellipse at 50% 30%,
-      rgba(255, 65, 155, .12),
-      transparent 60%
-    ),
-    linear-gradient(
-      180deg,
-      #080912,
-      #151020,
-      #0b1216
-    );
-
+    radial-gradient(ellipse at 50% 85%, rgba(48, 255, 145, .12), transparent 50%),
+    radial-gradient(ellipse at 50% 30%, rgba(255, 65, 155, .12), transparent 60%),
+    linear-gradient(180deg, #080912, #151020, #0b1216);
   box-shadow:
     inset 0 0 50px rgba(255, 120, 190, .1),
     0 15px 40px rgba(0, 0, 0, .3);
+}
+
+@media (max-width: 600px) {
+  .flower-stage {
+    height: 420px;
+  }
 }
 
 #flowerCanvas {
@@ -328,19 +323,18 @@ nav a:hover {
   width: 100%;
   height: 100%;
   cursor: pointer;
+  touch-action: manipulation;
 }
 
 .flower-caption {
   position: absolute;
   bottom: 15px;
   width: 100%;
-
   color: #ffc2e1;
   font-family: 'Playfair Display', serif;
   font-size: 14px;
   font-style: italic;
   text-align: center;
-
   pointer-events: none;
   text-shadow: 0 0 12px #ff68ba;
 }
@@ -359,10 +353,7 @@ nav a:hover {
   box-shadow: 0 0 25px rgba(237, 101, 173, .4);
 }
 
-
-/* =========================================
-   6. MEMORIES GALLERY
-========================================= */
+/* 6. MEMORIES GALLERY */
 
 .gallery {
   background: #fffaf8;
@@ -381,7 +372,7 @@ nav a:hover {
   border-radius: 13px;
   background: white;
   box-shadow: 0 6px 20px #efd4df;
-  transition: .35s ease;
+  transition: transform .35s ease, box-shadow .35s ease;
 }
 
 .photo:hover {
@@ -412,10 +403,7 @@ nav a:hover {
   font-style: italic;
 }
 
-
-/* =========================================
-   7. LOVE LETTER
-========================================= */
+/* 7. LOVE LETTER */
 
 .letter-section {
   background: linear-gradient(150deg, #ffeaf1, #fff4f5);
@@ -426,17 +414,14 @@ nav a:hover {
   display: flex;
   align-items: center;
   justify-content: center;
-
   width: min(310px, 85vw);
   height: 190px;
   margin: 50px auto 20px;
-
   border-radius: 8px;
   background: #e9a6bd;
   box-shadow: 0 12px 30px #e5b2c5;
-
   cursor: pointer;
-  transition: .3s ease;
+  transition: transform .3s ease;
 }
 
 .envelope:hover {
@@ -452,12 +437,10 @@ nav a:hover {
   content: "";
   position: absolute;
   inset: 0;
-
   background: #f5c4d5;
   clip-path: polygon(0 0, 50% 65%, 100% 0);
-
   z-index: 2;
-  transition: .5s;
+  transition: transform .5s, opacity .5s;
 }
 
 .envelope::after {
@@ -492,12 +475,10 @@ nav a:hover {
   max-width: 550px;
   margin: 30px auto 0;
   padding: 28px;
-
   border: 1px solid #f4d4df;
   border-radius: 18px;
   background: #fffdfb;
   box-shadow: 0 10px 30px #eac1d0;
-
   line-height: 2;
   text-align: left;
 }
@@ -519,26 +500,18 @@ nav a:hover {
   text-align: right;
 }
 
-
-/* =========================================
-   8. SECRET SURPRISE
-========================================= */
+/* 8. SECRET SURPRISE */
 
 .surprise-message {
   display: none;
-
   width: calc(100% - 40px);
   max-width: 750px;
-
   margin: 50px auto;
   padding: 35px 25px;
-
   border: 1px solid #f6d6e4;
   border-radius: 25px;
-
   background: #fffafc;
   box-shadow: 0 12px 35px rgba(219, 145, 176, .25);
-
   text-align: center;
   animation: reveal .9s ease;
 }
@@ -556,10 +529,18 @@ nav a:hover {
   line-height: 2;
 }
 
+@keyframes reveal {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
 
-/* =========================================
-   9. ANIMATED PINK ROSE
-========================================= */
+/* 9. ANIMATED PINK ROSE */
 
 .rose-container {
   display: none;
@@ -578,34 +559,23 @@ nav a:hover {
     opacity: 0;
     transform: translateY(35px) scale(.6);
   }
-
   to {
     opacity: 1;
     transform: translateY(0) scale(1);
   }
 }
 
-
-/* ROSE SCENE */
-
 .rose-scene {
   position: relative;
-
   width: 100%;
   max-width: 320px;
   height: 350px;
-
   margin: 0 auto;
-
   display: flex;
   align-items: flex-end;
   justify-content: center;
-
   overflow: visible;
 }
-
-
-/* ROSE GLOW */
 
 .rose-glow {
   position: absolute;
@@ -614,563 +584,55 @@ nav a:hover {
   top: 15px;
   left: 50%;
   transform: translateX(-50%);
-
   border-radius: 50%;
-
-  background: radial-gradient(
-    circle,
-    rgba(255, 117, 183, .35),
-    rgba(255, 117, 183, .08) 45%,
-    transparent 70%
-  );
-
-  animation: glowPulse 3s ease-in-out infinite;
+  background: radial-gradient(circle, rgba(255, 117, 183, .35), rgba(255, 117, 183, 0) 70%);
+  pointer-events: none;
 }
 
-@keyframes glowPulse {
-  50% {
-    transform: translateX(-50%) scale(1.3);
-    opacity: .5;
-  }
+/* 10. GIFT BOX & MUSIC BUTTON */
+
+#gift {
+  display: inline-block;
+  font-size: 80px;
+  cursor: pointer;
+  transition: transform .8s ease, opacity .8s ease;
+  will-change: transform;
+  animation: floating 3s ease-in-out infinite;
 }
 
-
-/* ROSE BODY */
-
-.rose {
-  position: relative;
-  width: 180px;
-  height: 315px;
-
-  transform-origin: bottom center;
-  animation: roseSway 4s ease-in-out infinite;
-  z-index: 2;
-}
-
-@keyframes roseSway {
-  0%, 100% {
-    transform: rotate(-3deg);
-  }
-
-  50% {
-    transform: rotate(3deg);
-  }
-}
-
-
-/* ROSE STEM */
-
-.rose-stem {
-  position: absolute;
-
-  width: 8px;
-  height: 205px;
-
-  bottom: 0;
-  left: 86px;
-
-  border-radius: 50%;
-
-  background: linear-gradient(
-    90deg,
-    #176d42,
-    #62d58b,
-    #176d42
-  );
-
-  box-shadow: 0 0 12px #55d88a;
-
-  transform: scaleY(0);
-  transform-origin: bottom;
-
-  animation: growStem 2s ease-out .5s forwards;
-}
-
-@keyframes growStem {
-  to {
-    transform: scaleY(1);
-  }
-}
-
-
-/* ROSE LEAVES */
-
-.rose-leaf {
-  position: absolute;
-
-  width: 68px;
-  height: 34px;
-
-  border-radius: 100% 0 100% 0;
-
-  background: linear-gradient(
-    135deg,
-    #a8f59b,
-    #32a85c,
-    #126b3b
-  );
-
-  opacity: 0;
-  box-shadow: 0 0 12px #4cc879;
-}
-
-.leaf-left {
-  left: 25px;
-  bottom: 105px;
-
-  transform: rotate(15deg) scale(0);
-
-  animation: leafGrowLeft 1s ease 2s forwards;
-}
-
-.leaf-right {
+#musicBtn,
+.music-btn {
+  position: fixed;
   right: 18px;
-  bottom: 160px;
-
-  transform: rotate(65deg) scale(0);
-
-  animation: leafGrowRight 1s ease 2.4s forwards;
+  bottom: 18px;
+  z-index: 60;
+  width: 48px;
+  height: 48px;
+  border: none;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #e994b3, #ce7095);
+  color: white;
+  font-size: 20px;
+  box-shadow: 0 6px 18px rgba(206, 112, 149, .5);
 }
 
-@keyframes leafGrowLeft {
-  to {
-    opacity: 1;
-    transform: rotate(15deg) scale(1);
-  }
+#musicBtn.playing,
+.music-btn.playing {
+  animation: musicPulse 1.6s ease-in-out infinite;
 }
 
-@keyframes leafGrowRight {
-  to {
-    opacity: 1;
-    transform: rotate(65deg) scale(1);
-  }
-}
-
-
-/* ROSE HEAD */
-
-.rose-head {
-  position: absolute;
-
-  width: 140px;
-  height: 140px;
-
-  top: 0;
-  left: 20px;
-
-  transform: scale(0);
-  transform-origin: center bottom;
-
-  animation: bloomRose 1.6s cubic-bezier(.2, 1.5, .5, 1) 2.8s forwards;
-
-  filter: drop-shadow(0 0 15px rgba(255, 90, 165, .65));
-
-  z-index: 4;
-}
-
-@keyframes bloomRose {
-  to {
-    transform: scale(1);
-  }
-}
-
-
-/* ROSE PETALS */
-
-.rose-petal {
-  position: absolute;
-
-  width: 68px;
-  height: 85px;
-
-  border: 1px solid rgba(255, 220, 235, .5);
-  border-radius: 80% 20% 65% 35%;
-
-  background: linear-gradient(
-    145deg,
-    #ffc4df 0%,
-    #ff75ae 40%,
-    #e72b80 75%,
-    #a90e51 100%
-  );
-
-  box-shadow:
-    inset -5px -7px 12px rgba(130, 0, 55, .25),
-    inset 4px 4px 12px rgba(255, 255, 255, .3);
-
-  transform-origin: bottom center;
-}
-
-
-/* OUTER PETALS */
-
-.petal-1 {
-  left: 35px;
-  top: 0;
-  transform: rotate(-35deg);
-}
-
-.petal-2 {
-  left: 55px;
-  top: 0;
-  transform: rotate(35deg);
-}
-
-.petal-3 {
-  left: 10px;
-  top: 25px;
-  transform: rotate(-65deg);
-}
-
-.petal-4 {
-  left: 75px;
-  top: 25px;
-  transform: rotate(65deg);
-}
-
-
-/* MIDDLE PETALS */
-
-.petal-5 {
-  left: 35px;
-  top: 35px;
-  transform: rotate(-25deg);
-}
-
-.petal-6 {
-  left: 55px;
-  top: 35px;
-  transform: rotate(25deg);
-}
-
-.petal-7 {
-  left: 20px;
-  top: 55px;
-  transform: rotate(-90deg);
-}
-
-.petal-8 {
-  left: 65px;
-  top: 55px;
-  transform: rotate(90deg);
-}
-
-
-/* ROSE CENTER */
-
-.rose-center {
-  position: absolute;
-
-  width: 39px;
-  height: 45px;
-
-  left: 52px;
-  top: 42px;
-
-  border-radius: 50% 45% 55% 45%;
-
-  background: radial-gradient(
-    circle at 35% 30%,
-    #ffb0ca,
-    #e82e79 65%,
-    #a90e51
-  );
-
-  box-shadow: 0 0 15px #ff80b8;
-
-  animation: centerPulse 2s ease-in-out infinite;
-
-  z-index: 5;
-}
-
-@keyframes centerPulse {
+@keyframes musicPulse {
   50% {
     transform: scale(1.1);
   }
 }
 
-
-/* ROSE GROUND */
-
-.rose-ground {
-  position: absolute;
-
-  bottom: -5px;
-  width: 210px;
-  height: 30px;
-
-  border-radius: 50%;
-
-  background: radial-gradient(
-    ellipse,
-    rgba(255, 110, 175, .35),
-    transparent 70%
-  );
-
-  filter: blur(5px);
-}
-
-
-/* ROSE CAPTION */
-
-.rose-caption {
-  margin-top: 12px;
-
-  color: #cf7298;
-
-  font-family: 'Playfair Display', serif;
-  font-size: 15px;
-  font-style: italic;
-}
-
-
-/* =========================================
-   10. FINAL SECTION
-========================================= */
-
-.final {
-  padding-bottom: 100px;
-  background: #fff8fa;
-}
-
-.final-heart {
-  margin: 20px;
-  font-size: 65px;
-  animation: heartbeat 1.4s infinite;
-}
-
-@keyframes heartbeat {
-  0%, 100% {
-    transform: scale(1);
-  }
-
-  50% {
-    transform: scale(1.2);
-  }
-}
-
-.final-note {
-  margin-top: 25px;
-  color: #bd829a;
-
-  font-family: 'Playfair Display', serif;
-  font-size: 13px;
-  font-style: italic;
-}
-
-
-/* =========================================
-   11. FOOTER
-========================================= */
-
-footer {
-  padding: 22px;
-  background: #f5d9e4;
-  color: #a86c82;
-  font-size: 11px;
-  text-align: center;
-}
-
-.footer-small {
-  margin-top: 7px;
-  opacity: .75;
-}
-
-
-/* =========================================
-   12. MUSIC BUTTON
-========================================= */
-
-.music-button {
-  position: fixed;
-  right: 17px;
-  bottom: 18px;
-  z-index: 50;
-
-  width: 48px;
-  height: 48px;
-
-  border: none;
-  border-radius: 50%;
-
-  background: #d97f9f;
-  color: white;
-  font-size: 20px;
-
-  box-shadow: 0 4px 15px #dba6ba;
-  transition: .3s;
-}
-
-.music-button:hover {
-  transform: scale(1.1);
-  box-shadow: 0 0 20px #e88eae;
-}
-
-.music-button.playing {
-  animation: musicPulse 1.5s infinite;
-}
-
-@keyframes musicPulse {
-  50% {
-    box-shadow: 0 0 25px #e88eae;
-  }
-}
-
-
-/* =========================================
-   13. FLOATING HEARTS
-========================================= */
-
-.heart {
-  position: fixed;
-  z-index: 40;
-
-  pointer-events: none;
-
-  animation: heartUp 1.8s ease forwards;
-}
-
-@keyframes heartUp {
-  0% {
-    transform: translateY(0) scale(.5);
-    opacity: 0;
-  }
-
-  20% {
-    opacity: 1;
-  }
-
-  100% {
-    transform: translateY(-150px) scale(1.5);
-    opacity: 0;
-  }
-}
-
-
-/* =========================================
-   14. REVEAL ANIMATION
-========================================= */
-
-@keyframes reveal {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-
-/* =========================================
-   15. RESPONSIVE MOBILE
-========================================= */
-
-@media (max-width: 600px) {
-
-  section {
-    padding: 70px 17px;
-  }
-
-  nav {
-    gap: 13px;
-    padding: 14px 5px;
-  }
-
-  nav a {
-    font-size: 10px;
-  }
-
-  .hero h1 {
-    font-size: clamp(40px, 11vw, 60px);
-  }
-
-  .hero-flower {
-    font-size: 70px;
-  }
-
-  .hero-text {
-    font-size: 13px;
-  }
-
-  .flower-stage {
-    height: 430px;
-    border-radius: 18px;
-  }
-
-  .gallery-grid {
-    gap: 10px;
-  }
-
-  .photo {
-    padding: 7px;
-  }
-
-  .photo p {
-    font-size: 11px;
-  }
-
-  .letter-content {
-    padding: 22px;
-  }
-
-  .surprise-message {
-    padding: 25px 17px;
-  }
-
-  .rose-scene {
-    transform: scale(.9);
-    transform-origin: center bottom;
-    margin-bottom: -20px;
-  }
-
-  .music-button {
-    right: 13px;
-    bottom: 15px;
-  }
-}
-
-@media (max-width: 360px) {
-
-  nav {
-    gap: 9px;
-  }
-
-  nav a {
-    font-size: 9px;
-  }
-
-  .flower-stage {
-    height: 350px;
-  }
-
-  .gallery-grid {
-    gap: 8px;
-  }
-
-  .rose-scene {
-    transform: scale(.82);
-    transform-origin: center bottom;
-    margin-bottom: -35px;
-  }
-}
-
-
-/* =========================================
-   16. ACCESSIBILITY
-========================================= */
+/* 11. HEMAT BATERAI / REDUCE MOTION */
 
 @media (prefers-reduced-motion: reduce) {
-
-  *,
-  *::before,
-  *::after {
-    scroll-behavior: auto !important;
+  *, *::before, *::after {
     animation-duration: .01ms !important;
     animation-iteration-count: 1 !important;
-    transition-duration: .01ms !important;
+    scroll-behavior: auto !important;
   }
-
 }
