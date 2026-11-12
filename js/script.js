@@ -1,3 +1,11 @@
+/* MODE RINGAN: deteksi HP lemah */
+const LITE =
+  (navigator.hardwareConcurrency || 4) <= 4 ||
+  (navigator.deviceMemory || 4) <= 3 ||
+  window.innerWidth < 500;
+
+if (LITE) document.body.classList.add("lite");
+
 /* ==========================================
    PINK GLOWING ROSE GARDEN (VERSI RINGAN)
    A Birthday Gift for Sayang ♡
@@ -7,7 +15,7 @@ const canvas = document.getElementById("flowerCanvas");
 let ctx = canvas ? canvas.getContext("2d") : null;
 
 const IS_MOBILE = window.innerWidth < 700;
-const FRAME_GAP = IS_MOBILE ? 33 : 16; // ~30fps di HP, ~60fps di desktop
+const FRAME_GAP = LITE ? 42 : IS_MOBILE ? 33 : 16; // ~30fps di HP, ~60fps di desktop
 
 let W = 0, H = 0;
 let animationFrame = null;
@@ -35,7 +43,7 @@ function smooth(t) {
 function resizeCanvas() {
   if (!canvas) return;
   const rect = canvas.getBoundingClientRect();
-  const dpr = Math.min(window.devicePixelRatio || 1, IS_MOBILE ? 1.5 : 2);
+  const dpr = LITE ? 1 : Math.min(window.devicePixelRatio || 1, IS_MOBILE ? 1.5 : 2);
   W = rect.width;
   H = rect.height;
   canvas.width = W * dpr;
