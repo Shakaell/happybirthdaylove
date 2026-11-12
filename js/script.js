@@ -592,3 +592,42 @@ function openGift() {
 
 }
 
+/* =========================================
+   MUSIC PLAYER
+========================================= */
+
+const music = document.getElementById("music");
+const musicBtn = document.getElementById("musicBtn");
+
+async function toggleMusic() {
+
+  if (!music || !musicBtn) {
+    console.error("Elemen musik tidak ditemukan!");
+    return;
+  }
+
+  if (music.paused) {
+
+    try {
+      await music.play();
+
+      musicBtn.textContent = "♫";
+      musicBtn.classList.add("playing");
+
+    } catch (error) {
+
+      console.error("Musik gagal diputar:", error);
+
+      alert("Musik belum bisa diputar. Periksa lokasi file MP3.");
+
+    }
+
+  } else {
+
+    music.pause();
+
+    musicBtn.textContent = "▶";
+    musicBtn.classList.remove("playing");
+
+  }
+}
