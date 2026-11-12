@@ -847,3 +847,8 @@ body.lite .btn {
 body.lite #petals {
   display: none;
 }
+
+.photo img {
+   height: auto;
+   background: #f9dce7;
+}
